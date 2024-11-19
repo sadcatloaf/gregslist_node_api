@@ -1,5 +1,5 @@
 import { request, response } from "express"
-// import { houseService } from "../services/HouseService"
+import { houseService } from "../services/HouseService"
 import BaseController from "../utils/BaseController"
 
 export class HouseController extends BaseController {
@@ -23,13 +23,11 @@ export class HouseController extends BaseController {
     // @param {import("express").NextFunction} next
 
     async getHouse(request, response, next) {
-        response.send('House api is working')
-        // try {
-        //     const houseQuery = request.query
-        //     const houses = await houseService.getHouse(houseQuery)
-        //     response.send(houses)
-        // } catch (error) {
-        //     next(error)
-        // }
+        try {
+            const houses = await houseService.getHouse()
+            response.send(houses)
+        } catch (error) {
+            next(error)
+        }
     }
 }
