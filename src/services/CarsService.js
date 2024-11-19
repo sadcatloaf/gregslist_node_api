@@ -20,13 +20,12 @@ class CarsService {
     const sortBy = carQuery.sortBy
     delete carQuery.sortBy
 
-    // NOTE populate is called on each document returned from find
     const cars = await dbContext.Cars
       .find(carQuery)
       .sort(sortBy)
       .skip(skipAmount)
       .limit(carLimit)
-      .populate('creator')
+      .populate('creator') // NOTE populate is called on each document returned from find
     const carCount = await dbContext.Cars.countDocuments(carQuery)
 
     const carResponse = {
