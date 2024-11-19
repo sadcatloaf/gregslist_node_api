@@ -22,3 +22,10 @@ export const CarSchema = new Schema(
     timestamps: true
   }
 )
+
+CarSchema.virtual('creator', {
+  localField: 'creatorId',
+  ref: 'Account',
+  foreignField: '_id',
+  justOne: true
+})
