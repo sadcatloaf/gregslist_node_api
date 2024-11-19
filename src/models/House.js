@@ -14,9 +14,9 @@ export const HouseSchema = new Schema(
     { timestamps: true, toJSON: { virtuals: true } }
 );
 
-// CarSchema.virtual('creator', {
-//     localField: 'creatorId', // take this value from my schema
-//     ref: 'Account', // look through this collection
-//     foreignField: '_id', // match my localField to this value from the referenced collection
-//     justOne: true // return a single object
-//   })
+HouseSchema.virtual('creator', {
+    localField: 'creatorId',
+    ref: 'Account',
+    foreignField: '_id',
+    justOne: true
+})
