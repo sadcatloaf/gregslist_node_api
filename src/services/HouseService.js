@@ -1,6 +1,11 @@
 import { dbContext } from "../db/DbContext"
 
 class HouseService {
+    async getHouseById(houseId) {
+
+    }
+
+
     async getHouse() {
         const houses = await dbContext.Houses.find()
         return houses
