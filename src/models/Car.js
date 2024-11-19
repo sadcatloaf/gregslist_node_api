@@ -25,10 +25,13 @@ export const CarSchema = new Schema(
     toJSON: { virtuals: true }
   }
 )
-
+// NOTE virtuals
+// adds a virtual property to our schema (a computed property that does not exist in the database)
+// first argument is the name of the virtual. This is what the property will be called on our objects, and also how we indicate which virtual to run when we call populate
+// this virtual attaches an account object to our car schema (account who posted the car)
 CarSchema.virtual('creator', {
-  localField: 'creatorId',
-  ref: 'Account',
-  foreignField: '_id',
-  justOne: true
+  localField: 'creatorId', // take this value from my schema
+  ref: 'Account', // look through this collection
+  foreignField: '_id', // match my localField to this value from the referenced collection
+  justOne: true // return a single object
 })
