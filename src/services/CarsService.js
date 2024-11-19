@@ -12,9 +12,23 @@ class CarsService {
     return car
   }
   async getCars(carQuery) {
+    const pageNumber = parseInt(carQuery.page) || 1
+    const carLimit = 10
+    const skipAmount = (pageNumber - 1) * carLimit
+    delete carQuery.page
+
     // NOTE populate is called on each document returned from find
-    const cars = await dbContext.Cars.find(carQuery).populate('creator')
-    return cars
+    const cars = await dbContext.Cars.find(carQuery).skip(skipAmount).limit(carLimit).populate('creator')
+    const carCount = await dbContext.Cars.countDocuments(carQuery)
+
+    const carResponse = {
+      count: carCount,
+      page: pageNumber,
+      totalPages: Math.ceil(carCount / carLimit),
+      results: cars,
+    }
+
+    return carResponse
   }
 }
 
