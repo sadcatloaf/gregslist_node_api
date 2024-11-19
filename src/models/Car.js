@@ -19,7 +19,10 @@ export const CarSchema = new Schema(
     creatorId: { type: Schema.ObjectId, required: true, ref: 'Account' }
   },
   {
-    timestamps: true
+    // adds createdAt and updatedAt to our data
+    timestamps: true,
+    // allows virtual properties on our schemas
+    toJSON: { virtuals: true }
   }
 )
 
