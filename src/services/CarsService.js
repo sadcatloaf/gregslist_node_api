@@ -11,9 +11,9 @@ class CarsService {
 
     return car
   }
-  async getCars() {
+  async getCars(carQuery) {
     // NOTE populate is called on each document returned from find
-    const cars = await dbContext.Cars.find().populate('creator')
+    const cars = await dbContext.Cars.find(carQuery).populate('creator')
     return cars
   }
 }
