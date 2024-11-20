@@ -11,9 +11,9 @@ export const HouseSchema = new Schema(
         year: { type: Number, min: 1000, max: 2024, required: true },
         creatorId: { type: Schema.ObjectId, required: true, ref: 'Account' }
     },
-    { timestamps: true, toJSON: { virtuals: true } }
-);
 
+    { timestamps: true, toJSON: { virtuals: true } }
+)
 HouseSchema.virtual('creator', {
     localField: 'creatorId',
     ref: 'Account',
